@@ -107,3 +107,31 @@ def test_contains():
     
     assert 10 in l1
     assert 20 not in l1
+
+def test_reverse_ll():
+    l1 = LinkedList()
+    l1.append(10)
+    l1.append(20)
+    l1.append(30)
+
+    l1.reverse()
+
+    assert list(l1.values()) == [30, 20, 10]
+
+def test_clear_ll():
+    l1 = LinkedList()
+    l1.append(1)
+
+    l1.clear()
+    
+    assert len(l1) == 0
+
+def test_slice_getitem():
+    l1 = LinkedList()
+    for v in [10, 20, 30, 40, 50]:
+        l1.append(v)
+
+    assert l1[1:4] == [20, 30, 40]
+    assert l1[:3] == [10, 20, 30]
+    assert l1[::2] == [10, 30, 50]
+    assert l1[1:5:2] == [20, 40]
