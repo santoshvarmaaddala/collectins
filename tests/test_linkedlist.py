@@ -1,4 +1,4 @@
-from collectins.linkedlist import LinkedList
+from collectins.linkedlist import LinkedList, ListNode
 import pytest
 
 def test_append_single_element():
@@ -35,9 +35,75 @@ def test_length_linkedlist():
 def test_get_item():
     l1 = LinkedList()
     l1.append(10)
-    node1 = l1[0]
 
-    assert l1[0] == node1
+    assert l1[0] == 10
 
     with pytest.raises(IndexError):
         _ = l1[10]
+
+def test_iter_by_values():
+    l1 = LinkedList()
+    l1.append(10)
+    l1.append(20)
+    l1.append(30)
+    l1.append(40)
+    l1.append(50)
+
+    check = 10
+    for val in l1.values():
+        assert val == check
+        check += 10
+
+def test_iter_by_nodes():
+    l1 = LinkedList()
+    l1.append(10)
+    l1.append(20)
+    l1.append(30)
+
+    vals = []
+
+    for node in l1.nodes():
+        assert isinstance(node, ListNode)
+        vals.append(node.val)
+
+    assert vals == [10, 20, 30]
+
+
+def test_iter_with_index():
+    l1 = LinkedList()
+    l1.append(100)
+    l1.append(200)
+    l1.append(300)
+
+    for index, value in l1:
+        assert l1[index] == value
+    
+def test_index():
+    l1 = LinkedList()
+    l1.append(10)
+    l1.append(30)
+    l1.insert(1, 20)
+
+    assert list(l1.values()) == [10, 20, 30]
+
+def test_pop():
+    l1 = LinkedList()
+    l1.append(10)
+    l1.append(20)
+    l1.append(30)
+
+    assert l1.pop(1) == 20
+    assert list(l1.values()) == [10, 30]
+
+    assert l1.pop() == 30
+    assert l1.pop(0) == 10
+
+    with pytest.raises(IndexError):
+        l1.pop()  # popping from empty list
+
+def test_contains():
+    l1 = LinkedList()
+    l1.append(10)
+    
+    assert 10 in l1
+    assert 20 not in l1
