@@ -1,0 +1,9 @@
+# requirements-dev.txt
+build
+twine
+pytest
+setuptools
+wheel
+mypy
+ruff
+black
