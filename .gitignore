@@ -5,3 +5,8 @@ __pycache__
 .vscode
 
 .pytest_cache
+
+# Ignore Python package build files
+dist/
+build/
+*.egg-info/
